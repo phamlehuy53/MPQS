@@ -13,6 +13,7 @@ global ShootDistanceB ShootDistanceR;
 global kB kR Target1 Target2;
 global deviationXB deviationYB deviationXR deviationYR ;
 global AccuracyB AccuracyR;
+global NumBluesPerShelter;
 %%
 % 
 %  PREFORMATTED
@@ -209,7 +210,7 @@ while (timeTick < TimeSteps)
                 force_wander = steer_wander(CurrentBoid);
                 force_separation = steer_separation(CurrentBoid, Blues, BluesNum);
 
-                [ObstIndex, tmpDist]=distTargets(Blues(BlueIndex,1:4),ObstaclesNum,Obstacles(ObstaclesNum, 1:4));  
+                [ObstIndex, tmpDist]=distTargets(Blues(BlueIndex,1:4),ObstaclesNum,Obstacles(:, 1:4));  
                 force_arrival = 0;
                 if tmpDist > 10 && Obstacles(5) < NumBluesPerShelter
                      Obstacles(5) =  Obstacles(5) + 1 ;
