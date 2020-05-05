@@ -41,8 +41,8 @@ RadiusFight = 200;
 
 %% List of Tank
 Tank = zeros(MaxTankNum,17);
-Tank(:,1) = EnvironmentWidth/4*(rand([MaxTankNum,1]))-500; % set random position
-Tank(:,2) = EnvironmentWidth/4*(rand([MaxTankNum,1]))-500; % set random position
+Tank(:,1) = EnvironmentWidth/4*(rand([MaxTankNum,1]))+300; % set random position
+Tank(:,2) = EnvironmentWidth/4*(rand([MaxTankNum,1]))+300; % set random position
 Tank(:,4:5) = 100; %200*(2*rand([BoidsNum,2])-1); % set random velocity
 Tank(:,10) = 10;%*(rand([BoidsNum,1]) + 0.2); % set maxspeed
 Tank(:,11) = 0.2; % set maxforce
