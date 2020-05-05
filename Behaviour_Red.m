@@ -190,7 +190,8 @@ while (timeTick < TimeSteps)
                  end
                  Tank = updateAtBoundary_Tank(Tank,i);
                  CurrentTank = Tank(i,:);
-                 seek_force = steer_seek(CurrentTank,[-200,-400,0]);
+                 seek_force = steer_seek(CurrentTank,[-200,-200,0,0]);
+                 avd_force=steer_collision_avoidance(CurrentTank,1,Obstacles, ObstaclesNum);
                  force = seek_force*0.5;
                  Tank(i,:) = applyForce(CurrentTank,force);
              end    

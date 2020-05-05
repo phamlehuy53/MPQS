@@ -15,7 +15,7 @@ if Tank(TankIndex,1)  > EnvironmentWidth
     if  Tank(TankIndex,5) > 0
         Tank(TankIndex,5)  = Tank(TankIndex,5) + SpeedCorrection;
     else
-        Tank(TankIndex,5)  = Tank(BoidIndex,5) - SpeedCorrection;
+        Tank(TankIndex,5)  = Tank(TankIndex,5) - SpeedCorrection;
     end
 end
 if Tank(TankIndex,2) < - EnvironmentWidth
