@@ -16,8 +16,8 @@ FightsNum =2; % Flights
 % Set global variables
 SET_GLOBAL_VARIABLES()
 SetObstacles()
-BluesNum = 7; % Choose number of Boids to demo
-RedsNum = 18; % Choose number of Boids to demo
+BluesNum = 6; % Choose number of Boids to demo
+RedsNum = 12; % Choose number of Boids to demo
 TankNum = 2;
 Targets = zeros(1,RedsNum);
 RangeView=0;
