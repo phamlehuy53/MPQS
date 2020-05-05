@@ -65,13 +65,14 @@ Reds = zeros(MaxRedNum,17); % initialize boids matrix
 % avoidance), 15 hit points, 16 radius-fight, 17 radius-warning
 %}
 %Reds(:,1:2) = 2; % set random position EnvironmentWidth*(2*rand([RedsNum,2])-1)
-Reds(1:3,1) = 600/4*(rand([3,1]))+400; % set random position
-Reds(1:3,2) = 600/4*(rand([3,1]))-500; % set random position
-Reds(4:6,1) = 600/4*(rand([3,1]))-400; % set random position
-Reds(7:9,1) = 600/4*(rand([3,1]))-400; % set random position
-Reds(7:9,2) = 600/4*(rand([3,1]))+500; % set random position
-Reds(10:12,1) = 600/4*(rand([3,1]))+150; % set random position
-Reds(10:12,2) = 600/4*(rand([3,1]))+500; % set random position
+Reds(1:3,1) = 800/4*(rand([3,1]))+800; % set random position
+Reds(1:3,2) = 800/4*(rand([3,1]))-500; % set random position
+%Reds(4:7,1) = 800/4*(rand([3,1]))-400; % set random position
+Reds(4:6,2) = 800/4*(rand([3,1]))+500; % set random position
+Reds(7:9,1) = 800/4*(rand([3,1]))-300; % set random position
+Reds(7:9,2) = 800/4*(rand([3,1]))+500; % set random position
+Reds(10:12,1) = 800/4*(rand([3,1]))+400; % set random position
+Reds(10:12,2) = 800/4*(rand([3,1]))+500; % set random position
 Reds(:,1) = Reds(:,1); 
 Reds(:,2) = Reds(:,2);
 Reds(:,4:5) = 100; %200*(2*rand([BoidsNum,2])-1); % set random velocity
