@@ -351,10 +351,10 @@ while (timeTick < TimeSteps)
     RedrawBoom(Booms,BoomsNum,v_ImageBoom,v_AlphaBoom,v_ImageEmpty,v_AlphaEmpty,BoomsPlot)
     RedrawBoid(Reds,RedsNum,v_ImageR,v_AlphaR,v_ImageE,v_AlphaE,RedsPlot);
     RedrawBoid(Blues,BluesNum,v_ImageB,v_AlphaB,v_ImageE,v_AlphaE,BluesPlot);
-    
+    RedrawTank(Tank,TankNum,v_ImageTank,v_AlphaTank,v_ImageTankDied,v_AlphaTankDied);
     RedrawRedsHP();
     RedrawBlueHP();
-
+    RedrawTankHP();
     %% Blue Win 
     for i = 1: RedsNum
         if ( Reds(i,15)<= 0 ) 
