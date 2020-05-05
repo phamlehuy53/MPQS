@@ -35,9 +35,9 @@ global Counter;
 [v_ImageBB,v_AlphaBB,v_ImageBR,v_AlphaBR,v_ImageBF,v_AlphaBF,v_ImageF,v_AlphaF]=LoadImageBase();
 [v_ImageBoom,v_AlphaBoom,v_ImageN,v_AlphaN,v_ImageEmpty,v_AlphaEmpty]=LoadImageBoom();
 [v_ImageFR,v_AlphaFR,v_ImageFB,v_AlphaFB]=LoadImageFlag();
+[v_ImageTank,v_AlphaTank,v_ImageTankDied,v_AlphaTankDied]=LoadImageTank();
 % draw graphic
 [fHandler]=InitializeGraphicN();
-BehaviourTank();
 % draw base
 
 [BasesPlot]=InitializeBase(v_ImageBB,v_AlphaBB,v_ImageBR,v_AlphaBR,v_ImageBF,v_AlphaBF);
