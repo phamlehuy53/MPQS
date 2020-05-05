@@ -1,8 +1,9 @@
+function RedrawTankHP()
 global MaxTankNum;
 global TankHP;
 global BloodPos;
 global SizeHPBar;
-
+global Tank TankNum
 delete(TankHP);
 for i = 1 : TankNum           
     if (Tank(i,15)>0)       

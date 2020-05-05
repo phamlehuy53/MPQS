@@ -1,6 +1,6 @@
 function [HPTankPlot]=InitializeHPTank(TankNum,MaxTankNum,Tank)
 global EnvironmentWidth;
-global BloodPos
+global BloodPos;
 global SizeHPBar;
 
 %axis off;
