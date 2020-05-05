@@ -11,7 +11,7 @@ global EnvironmentWidth ImageWidth SafeDistance AlignmentRange CohesionRange...
     BattleStatus BattlePreparing BattleWarning BattleFighting ...
     RadiusWarning RadiusFight ...
     NumBluesPerShelter...
-    Tank DameOfTank AccuracyTank DieTankNum ShootDistanceTank
+    Tank
 ;
 
 NumBluesPerShelter = 3;  % so linh Blue toi da co the nap tai 1 cho
@@ -133,7 +133,6 @@ DameOfTank = 70;
 
 ShootDistanceB = 200; 
 ShootDistanceR = 200; 
-ShootDistanceTank = 300;
 Target1 = [-400 -400 0];  
 Target2 = [100 100 0];    
 SizeHPBar=1;
@@ -141,10 +140,8 @@ SizeHPBar=1;
 %% Accuracy
 AccuracyB =0.95; % do chinh xac
 AccuracyR =0.9;
-AccuracyTank = 0.6;
 DieRNum =0 ; 
 DieBNum =0;
-DieTankNum = 0;
 %% Boom
  BoomsNum= 4;
  Booms = zeros(BoomsNum,4);
