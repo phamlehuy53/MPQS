@@ -142,8 +142,9 @@ while (timeTick < TimeSteps)
         
     end
     switch BattleStatus
+        
         case BattlePreparing
-
+        disp("check prepare");
 % cho Blues ?i lung tung
         for BlueIndex = 1:BluesNum
     %         Blues = updateAtBoundary(Blues,BlueIndex);

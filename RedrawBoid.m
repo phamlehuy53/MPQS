@@ -11,7 +11,6 @@ for BoidIndex = 1 : BoidsNum
             img_i = imrotate(v_Image, v_angle );
             alpha_i = imrotate(v_Alpha, v_angle );
         catch Me
-            disp(' hi');
             v_angle
         end
 
@@ -22,7 +21,6 @@ for BoidIndex = 1 : BoidsNum
             BoidsPlot(BoidIndex).XData = Boids(BoidIndex,1)-ImageWidth/2;
             BoidsPlot(BoidIndex).YData = Boids(BoidIndex,2)-ImageWidth/2;
         catch Me
-            disp('hi')
             [Boids(BoidIndex,1),Boids(BoidIndex,2)]
         end
     else

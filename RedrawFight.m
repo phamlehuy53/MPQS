@@ -12,7 +12,6 @@ for i = 1: FightsNum
         FightsPlot(i).XData=Fights(i,1) ;
         FightsPlot(i).YData=Fights(i,2) ;
     catch Me
-        disp('hi')
         [Fights(i,1),Fights(i,2)]
     end
 end
