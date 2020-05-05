@@ -14,6 +14,7 @@ global kB kR Target1 Target2;
 global deviationXB deviationYB deviationXR deviationYR ;
 global AccuracyB AccuracyR;
 global NumBluesPerShelter;
+
 %%
 % 
 %  PREFORMATTED
@@ -36,7 +37,7 @@ global Counter;
 [v_ImageFR,v_AlphaFR,v_ImageFB,v_AlphaFB]=LoadImageFlag();
 % draw graphic
 [fHandler]=InitializeGraphicN();
-
+BehaviourTank();
 % draw base
 
 [BasesPlot]=InitializeBase(v_ImageBB,v_AlphaBB,v_ImageBR,v_AlphaBR,v_ImageBF,v_AlphaBF);
