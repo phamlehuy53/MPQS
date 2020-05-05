@@ -14,7 +14,7 @@ global kB kR Target1 Target2;
 global deviationXB deviationYB deviationXR deviationYR ;
 global AccuracyB AccuracyR;
 global NumBluesPerShelter;
-global TankHP Tank TankNum MaxTankNum DieTankNum ;
+global TankHP Tank TankNum MaxTankNum DieTankNum;
 %%
 % 
 %  PREFORMATTED
