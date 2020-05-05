@@ -14,7 +14,7 @@ global kB kR Target1 Target2;
 global deviationXB deviationYB deviationXR deviationYR ;
 global AccuracyB AccuracyR;
 global NumBluesPerShelter;
-
+global TankHP Tank TankNum MaxTankNum DieTankNum;
 %%
 % 
 %  PREFORMATTED
@@ -53,6 +53,8 @@ InitializeObstacles(v_ImageS1,v_AlphaS1,v_ImageS2,v_AlphaS2,v_ImageS3,v_AlphaS3,
 [BluesPlot]=InitializeBoid(v_ImageB,v_AlphaB,v_ImageE,v_AlphaE,BluesNum,Blues);
 [BluesHP]=InitializeHP(BluesNum,MaxBlueNum,Blues);
 
+[TankPlot] =InitializeTank(v_ImageTank,v_AlphaTank,v_ImageTankDied,v_AlphaTankDied,TankNum,Tank); 
+[TankHP]=InitializeHP(TankNum, MaxTankNum, Tank);
 %%load sound
 [bomb,gun,fight,bombFs,gunFs,fightFs]=loadSound();
 
@@ -349,6 +351,7 @@ while (timeTick < TimeSteps)
     RedrawBoom(Booms,BoomsNum,v_ImageBoom,v_AlphaBoom,v_ImageEmpty,v_AlphaEmpty,BoomsPlot)
     RedrawBoid(Reds,RedsNum,v_ImageR,v_AlphaR,v_ImageE,v_AlphaE,RedsPlot);
     RedrawBoid(Blues,BluesNum,v_ImageB,v_AlphaB,v_ImageE,v_AlphaE,BluesPlot);
+    
     RedrawRedsHP();
     RedrawBlueHP();
 
