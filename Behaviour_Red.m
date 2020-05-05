@@ -188,11 +188,13 @@ while (timeTick < TimeSteps)
                  disp(["Distance warning: ", tmpDist]);
                  BattleStatus = BattleWarning;
                  end
-                 Tank = updateAtBoundary_Tank(Tank,i);
-                 CurrentTank = Tank(i,:);
-                 seek_force = steer_seek(CurrentTank,[-200,-200,0,0]);
+                 Tank = updateAtBoundary(Tank,i);
+                    CurrentTank = Tank(i, :);
+                    seek_force = steer_seek(CurrentBoid, [-200, -200, 0]);
+                    flk_force=steer_flock(CurrentTank,Tank,TankNum);
                  avd_force=steer_collision_avoidance(CurrentTank,1,Obstacles, ObstaclesNum);
                  force = seek_force*0.5;
+               
                  Tank(i,:) = applyForce(CurrentTank,force);
              end    
          end    
