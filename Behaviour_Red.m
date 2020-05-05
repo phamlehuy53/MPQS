@@ -128,13 +128,16 @@ while (timeTick < TimeSteps)
         disp(BattleStatus);
         currentStatus = BattleStatus;
         if currentStatus == BattlePreparing
-            waitfor(msgbox("DEPLOY TROOPS!"));
+            disp("DEPLOY TROOPS!");
+%             waitfor(msgbox("DEPLOY TROOPS!"));
         end
         if currentStatus == BattleWarning
-            waitfor(msgbox("ENCOUNTER ENEMIES!"));
+        disp("ENCOUNTER ENEMIES!");
+            %             waitfor(msgbox("ENCOUNTER ENEMIES!"));
         end
         if currentStatus == BattleFighting
-            waitfor(msgbox("ATTACK!"));
+        disp("ATTACK!");
+            %             waitfor(msgbox("ATTACK!"));
         end
         
     end
