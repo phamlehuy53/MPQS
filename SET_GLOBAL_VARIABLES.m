@@ -41,21 +41,15 @@ RadiusFight = 200;
 
 %% List of Tank
 Tank = zeros(MaxTankNum,17);
-Tank(1:3,1) = 600/4*(rand([3,1]))+400; % set random position
-Tank(1:3,2) = 600/4*(rand([3,1]))-500; % set random position
-Tank(4:6,1) = 600/4*(rand([3,1]))-400; % set random position
-Tank(7:9,1) = 600/4*(rand([3,1]))-400; % set random position
-Tank(7:9,2) = 600/4*(rand([3,1]))+500; % set random position
-Tank(10:12,1) = 600/4*(rand([3,1]))+150; % set random position
-Tank(10:12,2) = 600/4*(rand([3,1]))+500; % set random position
-Tank(:,1) = Tank(:,1); 
-Tank(:,2) = Tank(:,2);
+Tank(:,1) = EnvironmentWidth/4*(rand([MaxTankNum,1]))-500; % set random position
+Tank(:,2) = EnvironmentWidth/4*(rand([MaxTankNum,1]))-500; % set random position
 Tank(:,4:5) = 100; %200*(2*rand([BoidsNum,2])-1); % set random velocity
 Tank(:,10) = 10;%*(rand([BoidsNum,1]) + 0.2); % set maxspeed
 Tank(:,11) = 0.2; % set maxforce
 Tank(:,13) = 200; % set max see ahead
 Tank(:,14) = 10; % set max avoid force
-Tank(:,15) = 100; % set blood
+Tank(:,15) = 120; % set blood
+% Blues(1,15) = 10000; % set blood
 Tank(:, 16) = RadiusFight;
 Tank(:, 17) = RadiusWarning;
 %% List of Reds
