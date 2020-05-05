@@ -183,14 +183,14 @@ while (timeTick < TimeSteps)
          %% set target Tank  
          for i = 1:TankNum
              if(Tank(i,15)>0)
-                 [tgIndex, tmpDistTank]=distTargets_Tank(Tank(i,:),BluesNum,Blues); 
+                 [tgIndex, tmpDistTank]=distTargets(Tank(i,:),BluesNum,Blues); 
                  if tmpDistTank < RadiusWarning
                  disp(["Distance warning: ", tmpDist]);
                  BattleStatus = BattleWarning;
                  end
                  Tank = updateAtBoundary_Tank(Tank,i);
                  CurrentTank = Tank(i,:);
-                 seek_force = steer_seek(CurrentTank,[-200,-400,0]);
+                 seek_force = steer_seek(CurrentTank,zeros(1,3));
                  force = seek_force*0.5;
                  Tank(i,:) = applyForce(CurrentTank,force);
              end    
