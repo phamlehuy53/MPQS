@@ -9,7 +9,7 @@ global ImageWidth;
 global ObstaclesB ObstaclesNumB;
 global ObstaclesR ObstaclesNumR;
 global Obstacles ObstaclesNum;
-global ShootDistanceB ShootDistanceR;
+global ShootDistanceB ShootDistanceR ShootDistanceTank;
 global kB kR Target1 Target2;
 global deviationXB deviationYB deviationXR deviationYR ;
 global AccuracyB AccuracyR;
@@ -188,11 +188,10 @@ while (timeTick < TimeSteps)
                  disp(["Distance warning: ", tmpDist]);
                  BattleStatus = BattleWarning;
                  end
-                 Tank = updateAtBoundary(Tank,i);
+                 Tank = updateAtBoundary_Tank(Tank,i);
                     CurrentTank = Tank(i, :);
-                    seek_force = steer_seek(CurrentBoid, [-200, -200, 0]);
-                    flk_force=steer_flock(CurrentTank,Tank,TankNum);
-                 avd_force=steer_collision_avoidance(CurrentTank,1,Obstacles, ObstaclesNum);
+                    seek_force = steer_arrival(CurrentTank, ObstaclesR(1,1:3));
+                    %avd_force=steer_collision_avoidance(CurrentTank,1,Obstacles, ObstaclesNum);
                  force = seek_force*0.5;
                
                  Tank(i,:) = applyForce(CurrentTank,force);
@@ -323,10 +322,10 @@ while (timeTick < TimeSteps)
                     Tank = updateAtBoundary_Tank(Tank,i);
                     CurrentTank = Tank(i, :);
                     [J,tmpDist]=findTarget(Tank(i,:),BluesNum,Blues);       
-                    if (J>0 && dist(Tank(i,:),Blues(J,:))<ShootDistanceB) % ?? g?n thì b?n
+                    if (J>0 && dist(Tank(i,:),Blues(J,:))<ShootDistanceTank) % ?? g?n thì b?n
 
                         numLines = numLines+1;
-                        lineDrawn(numLines)=line([Tank(i,1), Blues(J,1)],[Tank(i,2), Blues(J,2)],'Color','Tank','LineStyle','-.');
+                        lineDrawn(numLines)=line([Tank(i,1), Blues(J,1)],[Tank(i,2), Blues(J,2)],'Color','r','LineStyle','-.');
                         pause(0.00001);
                         sound(gun,gunFs);
 
@@ -341,7 +340,7 @@ while (timeTick < TimeSteps)
                         else
                             arr_force = steer_arrival(CurrentTank, Target1);
                         end
-                        force=arr_force*2+flk_force*1+avd_force*0.07;
+                        force=arr_force*2;
                         Tank(i,:) = applyForce(CurrentTank, force); 
 
                     end 
@@ -412,6 +411,7 @@ while (timeTick < TimeSteps)
     [BluesNum,Blues] = UpdateBoid(AttackBlue,BluesNum,Blues);    
     %% Update Reds
     [RedsNum,Reds] = UpdateBoid(AttackRed,RedsNum,Reds);   
+    %% Update Tank
     
     %% redraw    
     RedrawFight(v_ImageF,v_AlphaF,FightsPlot);
