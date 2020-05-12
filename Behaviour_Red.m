@@ -14,7 +14,7 @@ global kB kR Target1 Target2;
 global deviationXB deviationYB deviationXR deviationYR ;
 global AccuracyB AccuracyR;
 global NumBluesPerShelter;
-global TankHP Tank TankNum MaxTankNum DieTankNum ;
+global TankHP Tank TankNum MaxTankNum DieTankNum deviationXT deviationYT AccuracyTank;
 %%
 % 
 %  PREFORMATTED
@@ -106,7 +106,10 @@ deviationYB = ShootDistanceB*(1-AccuracyB*(2*rand - 1));
 %% daviation Red
 deviationXR = ShootDistanceR*(1-AccuracyR*(2*rand - 1));
 deviationYR = ShootDistanceR*(1-AccuracyR*(2*rand - 1));
-%% 
+%% Tank
+deviationXT = ShootDistanceTank*(1-AccuracyTank*(2*rand - 1));
+deviationYT = ShootDistanceTank*(1-AccuracyTank*(2*rand - 1));
+%%
 currentStatus = -1;
 global lineDrawn numLines;
 lineDrawn = [line([0,0], [0,1], 'Color', 'r', 'LineWidth', 2)];
@@ -117,6 +120,7 @@ pauseGame = 0;
 while (timeTick < TimeSteps)
     AttackBlue = zeros(1,BluesNum);    % damage caused by R on B
     AttackRed=zeros(1,RedsNum);  
+    AttackTank = zeros(1,TankNum)
 %             for BlueIndex = 1:BluesNum
 %                 CurrentBoid = Blues(BlueIndex, :);
 %                 force_steek = steer_seek(CurrentBoid, ObstaclesB( 1,1:3));
@@ -185,14 +189,14 @@ while (timeTick < TimeSteps)
              if(Tank(i,15)>0)
                  [tgIndex, tmpDistTank]=distTargets_Tank(Tank(i,:),BluesNum,Blues); 
                  if tmpDistTank < RadiusWarning
-                 disp(["Distance warning: ", tmpDist]);
+                 disp(["Distance warning: ", tmpDistTank]);
                  BattleStatus = BattleWarning;
                  end
                  Tank = updateAtBoundary_Tank(Tank,i);
                     CurrentTank = Tank(i, :);
-                    seek_force = steer_arrival(CurrentTank, ObstaclesR(1,1:3));
-                    %avd_force=steer_collision_avoidance(CurrentTank,1,Obstacles, ObstaclesNum);
-                 force = seek_force*0.5;
+                    seek_force = steer_seek(CurrentTank, ObstaclesB(1,1:3));
+                    avd_force=steer_collision_avoidance(CurrentTank,1,Obstacles, ObstaclesNum);
+                 force = seek_force*0.5+avd_force*0.07;
                
                  Tank(i,:) = applyForce(CurrentTank,force);
              end    
@@ -314,8 +318,7 @@ while (timeTick < TimeSteps)
         %             if(Reds(i,15)>0)  % still alive
                         Reds(i,:) = applyForce(CurrentBoid, force);
                 end
-            end
-        case BattleFighting
+        end
                %% Tank
         for i=1:TankNum
                 if(Tank(i,15)>0)
@@ -412,7 +415,7 @@ while (timeTick < TimeSteps)
     %% Update Reds
     [RedsNum,Reds] = UpdateBoid(AttackRed,RedsNum,Reds);   
     %% Update Tank
-    
+    [TankNum, Tank] = UpdateTank(AttackTank,TankNum,Tank);
     %% redraw    
     RedrawFight(v_ImageF,v_AlphaF,FightsPlot);
     RedrawBoom(Booms,BoomsNum,v_ImageBoom,v_AlphaBoom,v_ImageEmpty,v_AlphaEmpty,BoomsPlot)

@@ -11,7 +11,7 @@ global EnvironmentWidth ImageWidth SafeDistance AlignmentRange CohesionRange...
     BattleStatus BattlePreparing BattleWarning BattleFighting ...
     RadiusWarning RadiusFight ...
     NumBluesPerShelter...
-    Tank DameOfTank AccuracyTank DieTankNum ShootDistanceTank MaxTankNum
+    Tank DameOfTank AccuracyTank DieTankNum ShootDistanceTank MaxTankNum TankNum
 ;
 
 NumBluesPerShelter = 3;  % so linh Blue toi da co the nap tai 1 cho
@@ -26,6 +26,7 @@ FleeDistance = 200;
 SpeedCorrection = 100;
 %Number of Boids
 BoidsNum = 300;
+TankNum = 2;
 %Number of Targets
 BattleStatus = 1;
 BattlePreparing = 1;
@@ -40,16 +41,22 @@ RadiusWarning = 500;
 RadiusFight = 200;
 
 %% List of Tank
-Tank = zeros(MaxTankNum,17);
-Tank(:,1) = EnvironmentWidth/4*(rand([MaxTankNum,1]))+300; % set random position
-Tank(:,2) = EnvironmentWidth/4*(rand([MaxTankNum,1]))+300; % set random position
+Tank = zeros(MaxTankNum,17); % initialize boids matrix
+%{1-3 position, 4-6 velocity, 7-9 accelaration, 10 maxspeed, 11 maxforce, 12 angle,
+% 13 max see ahead (for collision avoidance), 14 max avoid force (collision
+% avoidance), 15 hit points, 16 radius-fight, 17 radius-warning
+%}
+%Reds(:,1:2) = 2; % set random position EnvironmentWidth*(2*rand([RedsNum,2])-1)
+Tank(:,1) = 800/4*(rand([3,1]))+400; % set random position
+Tank(:,2) = 800/4*(rand([3,1]))+400; % set random position
+Tank(:,1) = Tank(:,1); 
+Tank(:,2) = Tank(:,2);
 Tank(:,4:5) = 100; %200*(2*rand([BoidsNum,2])-1); % set random velocity
 Tank(:,10) = 10;%*(rand([BoidsNum,1]) + 0.2); % set maxspeed
 Tank(:,11) = 0.2; % set maxforce
 Tank(:,13) = 200; % set max see ahead
 Tank(:,14) = 10; % set max avoid force
-Tank(:,15) = 120; % set blood
-% Blues(1,15) = 10000; % set blood
+Tank(:,15) = 100; % set blood
 Tank(:, 16) = RadiusFight;
 Tank(:, 17) = RadiusWarning;
 %% List of Reds

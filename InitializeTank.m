@@ -1,4 +1,4 @@
-function [TankPlot]=InitializeTank(v_ImageTank,v_AlphaTank,v_ImageDiedTank,v_AlphaDiedTank,OBJNum,OBJs)
+function [TankPlot]=InitializeTank(v_ImageTank,v_AlphaTank,v_ImageTankDied,v_AlphaDiedTankDied,OBJNum,OBJs)
 global EnvironmentWidth;
 global ImageWidth;
 
@@ -10,8 +10,8 @@ for i=1:OBJNum
             img_i = imrotate(v_ImageTank, angle);
             alpha_i = imrotate(v_AlphaTank, angle); 
         else
-        img_i = imrotate(v_ImageDiedTank, angle);
-        alpha_i = imrotate(v_AlphaDiedTank, angle);                
+        img_i = imrotate(v_ImageTankDied, angle);
+        alpha_i = imrotate(v_AlphaDiedTankDied, angle);                
         end  
     TankPlot(i) = image(OBJs(i,1)- ImageWidth/2, OBJs(i,2)-ImageWidth/2, img_i);
     TankPlot(i).AlphaData = alpha_i;      
