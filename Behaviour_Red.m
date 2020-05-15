@@ -204,30 +204,29 @@ while (timeTick < TimeSteps)
              end    
          end    
         %% set target Red             
-%         for i = 1:RedsNum
-%             if(Reds(i,15)>0)  % still alive
-%                 
-% %                 N?u phát hi?n Blue thì chuy?n -> BattleWarning, xu?ng case duoies
-%                 [tgIndex, tmpDist]=distTargets(Reds(i,:),BluesNum,Blues);  
-%                 if tmpDist < RadiusWarning
-%                     disp(["Distance warning: ", tmpDist]);
-%                     BattleStatus = BattleWarning;
-%                 else
-% %                     disp(["Distance: ", tmpDist]);
-%                 end
-%                 Reds = updateAtBoundary(Reds,i);
-%                 CurrentBoid = Reds(i, :);
-%                 % Red t?p trung l?i
-%                 see_force = steer_seek(CurrentBoid, ObstaclesR(1,1:3));
-%                 flk_force=steer_flock(CurrentBoid,Reds,RedsNum);
-%                 avd_force=steer_collision_avoidance(CurrentBoid,1,Obstacles, ObstaclesNum);
-%                 force = see_force*1+flk_force*1+avd_force*0.07;
-%     %             if(Reds(i,15)>0)  % still alive
-%                     Reds(i,:) = applyForce(CurrentBoid, force);
-%             end
-%         end
-%          
-%      
+        for i = 1:RedsNum
+            if(Reds(i,15)>0)  % still alive
+                
+%                 N?u phát hi?n Blue thì chuy?n -> BattleWarning, xu?ng case duoies
+                [tgIndex, tmpDist]=distTargets(Reds(i,:),BluesNum,Blues);  
+                if tmpDist < RadiusWarning
+                    disp(["Distance warning: ", tmpDist]);
+                    BattleStatus = BattleWarning;
+                else
+%                     disp(["Distance: ", tmpDist]);
+                end
+                Reds = updateAtBoundary(Reds,i);
+                CurrentBoid = Reds(i, :);
+                % Red t?p trung l?i
+                see_force = steer_seek(CurrentBoid, ObstaclesR(1,1:3));
+                flk_force=steer_flock(CurrentBoid,Reds,RedsNum);
+                avd_force=steer_collision_avoidance(CurrentBoid,1,Obstacles, ObstaclesNum);
+                force = see_force*1+flk_force*1+avd_force*0.07;
+    %             if(Reds(i,15)>0)  % still alive
+                    Reds(i,:) = applyForce(CurrentBoid, force);
+            end
+        end
+   
         case BattleWarning
             for BlueIndex = 1:BluesNum
         %         Blues = updateAtBoundary(Blues,BlueIndex);
@@ -236,15 +235,18 @@ while (timeTick < TimeSteps)
                 force_wander = steer_wander(CurrentBoid);
                 force_separation = steer_separation(CurrentBoid, Blues, BluesNum);
                 
+                force_arrival = 0;
                 if Blues(BlueIndex, 18) > 0
                     disp(["index", Blues(BlueIndex, 18)]);
 %                     [ObstIndex, tmpDist]=distTargets(Blues(BlueIndex,1:4),ObstaclesNum,Obstacles(:, 1:4)); 
                     force_arrival = steer_arrival(CurrentBoid, Obstacles(Blues(BlueIndex, 18), :));
                 else
                     [ObstIndex, tmpDist]=distShelters(Blues(BlueIndex,1:4),ObstaclesNum,Obstacles(:, 1:5));  
-                    force_arrival = 0;
-    %                 disp(["index: ",ObstIndex]);
-                    disp(["blue", BlueIndex, ObstIndex]);
+                    
+%                     disp(["index: ",ObstIndex]);
+%                     disp(["blue", BlueIndex, ObstIndex]);
+%                         disp(["blue", BlueIndex,  Blues(BlueIndex, 18)]);
+
                     if ObstIndex>0 
                         Blues(BlueIndex, 18) = ObstIndex;
                         if tmpDist > 10 && Obstacles(ObstIndex, 5) < NumBluesPerShelter
@@ -254,7 +256,6 @@ while (timeTick < TimeSteps)
                             force_arrival = steer_arrival(CurrentBoid, Obstacles(ObstIndex, :));
                         end
                     else
-
                     end
                 end
 
