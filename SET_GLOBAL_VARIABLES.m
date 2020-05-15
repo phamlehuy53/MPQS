@@ -47,8 +47,8 @@ Tank = zeros(MaxTankNum,17); % initialize boids matrix
 % avoidance), 15 hit points, 16 radius-fight, 17 radius-warning
 %}
 %Reds(:,1:2) = 2; % set random position EnvironmentWidth*(2*rand([RedsNum,2])-1)
-Tank(:,1) = 800/4*(rand([3,1]))+400; % set random position
-Tank(:,2) = 800/4*(rand([3,1]))+400; % set random position
+Tank(:,1) = 800/4*(rand([3,1]))+600; % set random position
+Tank(:,2) = 800/4*(rand([3,1]))+600; % set random position
 Tank(:,1) = Tank(:,1); 
 Tank(:,2) = Tank(:,2);
 Tank(:,4:5) = 100; %200*(2*rand([BoidsNum,2])-1); % set random velocity
