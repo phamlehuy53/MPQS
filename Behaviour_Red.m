@@ -235,22 +235,27 @@ while (timeTick < TimeSteps)
                 CurrentBoid = Blues(BlueIndex, :);
                 force_wander = steer_wander(CurrentBoid);
                 force_separation = steer_separation(CurrentBoid, Blues, BluesNum);
-
-                [ObstIndex, tmpDist]=distShelters(Blues(BlueIndex,1:4),ObstaclesNum,Obstacles(:, 1:5));  
-                force_arrival = 0;
-%                 disp(["index: ",ObstIndex]);
-                disp(["blue", BlueIndex]);
-                if ObstIndex>0 
-                    if tmpDist > 10 && Obstacles(ObstIndex, 5) < NumBluesPerShelter
-                         Obstacles(ObstIndex, 5) =  Obstacles(ObstIndex, 5) + 1 ;
-                         Blues(BlueIndex, 18) = ObstIndex;
-                        % Blue tìm ?á g?n nh?t ?? n?p
-                        force_arrival = steer_arrival(CurrentBoid, Obstacles(ObstIndex, :));
-                    end
-                else
+                
+                if Blues(BlueIndex, 18) > 0
                     disp(["index", Blues(BlueIndex, 18)]);
 %                     [ObstIndex, tmpDist]=distTargets(Blues(BlueIndex,1:4),ObstaclesNum,Obstacles(:, 1:4)); 
                     force_arrival = steer_arrival(CurrentBoid, Obstacles(Blues(BlueIndex, 18), :));
+                else
+                    [ObstIndex, tmpDist]=distShelters(Blues(BlueIndex,1:4),ObstaclesNum,Obstacles(:, 1:5));  
+                    force_arrival = 0;
+    %                 disp(["index: ",ObstIndex]);
+                    disp(["blue", BlueIndex, ObstIndex]);
+                    if ObstIndex>0 
+                        Blues(BlueIndex, 18) = ObstIndex;
+                        if tmpDist > 10 && Obstacles(ObstIndex, 5) < NumBluesPerShelter
+                             Obstacles(ObstIndex, 5) =  Obstacles(ObstIndex, 5) + 1 ;
+
+                            % Blue tìm ?á g?n nh?t ?? n?p
+                            force_arrival = steer_arrival(CurrentBoid, Obstacles(ObstIndex, :));
+                        end
+                    else
+
+                    end
                 end
 
                 force =  force_arrival*6 + force_separation*1 + force_wander*0;

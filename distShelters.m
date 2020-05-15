@@ -6,6 +6,7 @@ for i=1:OBJNum
 %         disp([i, " full"])
         continue
     end
+%     disp(["room", OBJs(i, 5)]);
     if (dist(Boid(1:4),OBJs(i,1:4))<tmpDist )
         tmpDist=dist(Boid(1:4),OBJs(i,1:4));
 %         disp)

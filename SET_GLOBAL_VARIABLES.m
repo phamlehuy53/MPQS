@@ -38,7 +38,7 @@ TargetsNum = 10;
 BloodPos=25;
 D_BehindLeader = 130;
 RadiusWarning = 500;
-RadiusFight = 200;
+RadiusFight = 100;
 
 %% List of Tank
 Tank = zeros(MaxTankNum,17); % initialize boids matrix
@@ -102,7 +102,7 @@ Blues(:,15) = 120; % set blood
 % Blues(1,15) = 10000; % set blood
 Blues(:, 16) = RadiusFight;
 Blues(:, 17) = RadiusWarning;
-Blues(:, 18) = 1; % Obstacle index following
+Blues(:, 18) = 0; % Obstacle index following
 %% Set static Obstacle data
 ObstaclesNum = 6;
 Obstacles=zeros(ObstaclesNum,5);    % 1:2 - x,y position; 4 - radius; 5 - num-room
