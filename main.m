@@ -9,14 +9,14 @@ global TankNum;
 global Blues;
 global RangeView;
 global MaxBlueNum MaxRedNum MaxTankNum FightsNum;
-MaxBlueNum =9;
+MaxBlueNum =15;
 MaxRedNum =20;
 MaxTankNum = 3;
 FightsNum =2; % Flights
 % Set global variables
 SET_GLOBAL_VARIABLES()
 SetObstacles()
-BluesNum = 6; % Choose number of Boids to demo
+BluesNum = 12; % Choose number of Boids to demo
 RedsNum = 12; % Choose number of Boids to demo
 TankNum = 2;
 Targets = zeros(1,RedsNum);

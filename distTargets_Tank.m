@@ -1,8 +1,8 @@
 function [index,tmpDist]=distTargets_Tank(Tank,OBJNum,OBJs)
 tmpDist=100000;J=0;
 for i=1:OBJNum
-    if (dist(Tank,OBJs(i,:))<tmpDist )
-        tmpDist=dist(Tank,OBJs(i,:));
+    if (dist(Tank(1:4),OBJs(i,1:4))<tmpDist )
+        tmpDist=dist(Tank(1:4),OBJs(i,1:4));
         J=i;
     end
 end
